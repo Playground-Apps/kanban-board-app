@@ -9,7 +9,7 @@ export const TaskCard = ({ task }) => {
     });
   return (
     <div className='task-card' ref={ref}>
-      <a href='/Backlog' className='task-card-title'>{task?.Name}</a>
+      <a href={`/EditTask/${task.id}`} className='task-card-title'>{task?.Name}</a>
       <div className='task-card-description'>{task?.Points}</div>
     </div>
   );
