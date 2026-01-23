@@ -5,6 +5,7 @@ export function InlineEdit({
   onConfirm,
   onCancel,
 }) {
+    console.log("InlineEdit value:", value);
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(value);
   const inputRef = useRef(null);

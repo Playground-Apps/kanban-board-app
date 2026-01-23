@@ -1,7 +1,7 @@
 import { useKanbanBoardController } from '../controllers/KanbanBoardController.jsx';
 import '../styles/KanbanBoard.css';
 import { DragDropProvider } from '@dnd-kit/react';
-import { Phase } from './PhaseSlab.jsx';
+import { Phase } from '../components/PhaseSlab.jsx';
 
 export default () => {
   const { areas, tasks, setTasks } = useKanbanBoardController();

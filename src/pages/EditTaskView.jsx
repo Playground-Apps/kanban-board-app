@@ -6,18 +6,14 @@ import TurndownService from "turndown";
 export const EditTaskView = ({task}) => {
   const turndown = useMemo(() => new TurndownService(), []);
   const navigate = useNavigate();
-   console.log("yaaran da log",value);
-    const markdownValue = turndown.turndown(value);
-    console.log("markdownValue (computed)", markdownValue);
-
+   console.log("EditTaskView task:", task);
   function Cancel() {
        console.log("cacnelling");
   //  navigate('/ActiveSprint');
   }
 
   function handleSubmit(e) {
-    const md = turndown.turndown(value);
-    console.log("Submitting markdown:", md);
+    console.log("inilineedit phone kr rea aeee:",e);
     // save logic...
   }
 
