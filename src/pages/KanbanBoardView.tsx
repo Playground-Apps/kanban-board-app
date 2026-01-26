@@ -1,29 +1,36 @@
 import { useKanbanBoardController } from '../controllers/KanbanBoardController.js';
 import '../styles/KanbanBoard.css';
-import { DragDropProvider } from '@dnd-kit/react';
+import { DndContext } from '@dnd-kit/core';
+import type { DragEndEvent } from '@dnd-kit/core';
 import { PhaseSlab } from '../components/PhaseSlab.js';
+import {updateTaskMutation} from '../mutations/UpdateTaskMutation.js';
+import { Task } from '../client/types.gen.js';
 
 export default () => {
   const { phases, tasks } = useKanbanBoardController();
-  return (
-    <DragDropProvider 
-      onDragEnd={({operation, canceled}) => {
-        const {source, target} = operation;
-       if (!canceled && target) {
-          setTasks(tasks.map(task => {
-              if (task.Id === source.id) {
-                console.log('Checking task:', task);
-              return { ...task, Phase: target.id };
+  const handleDragEnd = (event: DragEndEvent) => {
+        const {active, over} = event;
+       if (over) {
+          const affectedTasks: Task = tasks.find(task =>task.id === active.id)!;
+          let updatedTask:Task= { ...affectedTasks, phaseId: Number(over.id) };
+          updateTaskMutation().mutate({
+            body:{
+              ...updatedTask
+            },
+            path:{
+            id: updatedTask?.id!
             }
-            return task;
-          }));
+          });
         }
-      }}>
+      }
+  return (
+    <DndContext 
+      onDragEnd={handleDragEnd}>
     {phases.length > 0 &&
     
     phases.map(item => (
       <PhaseSlab key={item?.id} item={item} tasks={tasks} />
     ))}
-    </DragDropProvider>
+    </DndContext>
   );
 };

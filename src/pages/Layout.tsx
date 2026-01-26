@@ -1,8 +1,8 @@
 import '../index.css';
 import { Routes, Route,NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import KanbanBoard from './KanbanBoardView.tsx/index.js';
-import { EditTaskView } from './EditTaskView.tsx/index.js';
+import KanbanBoard from './KanbanBoardView.tsx';
+import { EditTaskView } from './EditTaskView.tsx';
 import Backlog from './Backlog.js';
 import { useLocation } from 'react-router-dom';
 
@@ -48,7 +48,7 @@ const location = useLocation();
     </aside>
     <main> <Routes>
       <Route path="/ActiveSprint" element={<KanbanBoard />} />
-      <Route path="/EditTask{task}" element={<EditTaskView />} />
+      <Route path="/EditTask/:id" element={<EditTaskView />} />
       <Route path="/Backlog" element={<Backlog />} />
     </Routes></main>
     </div>);

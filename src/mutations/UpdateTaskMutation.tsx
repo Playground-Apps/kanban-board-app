@@ -2,7 +2,7 @@
   import {putApiTasksByIdMutation,getTaskQueryKey,getApiTasksQueryKey} from '../client/@tanstack/react-query.gen.ts';
   import { Task } from "../client/types.gen.js";
 
-  export const updateTaskMutation = (taskUpdate: Task) => {
+  export const updateTaskMutation = () => {
  return useMutation({
       ...putApiTasksByIdMutation(),
       onSuccess:(data)=>{

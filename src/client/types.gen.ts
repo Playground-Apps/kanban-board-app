@@ -120,8 +120,10 @@ export type PutApiBoardsByIdResponses = {
     /**
      * OK
      */
-    200: unknown;
+    200: Board;
 };
+
+export type PutApiBoardsByIdResponse = PutApiBoardsByIdResponses[keyof PutApiBoardsByIdResponses];
 
 export type GetData = {
     body?: never;
@@ -218,8 +220,10 @@ export type PutApiPhasesByIdResponses = {
     /**
      * OK
      */
-    200: unknown;
+    200: Phase;
 };
+
+export type PutApiPhasesByIdResponse = PutApiPhasesByIdResponses[keyof PutApiPhasesByIdResponses];
 
 export type GetApiPhaseTransitionsData = {
     body?: never;
@@ -300,8 +304,10 @@ export type PutApiPhaseTransitionsByIdResponses = {
     /**
      * OK
      */
-    200: unknown;
+    200: PhaseTransitions;
 };
+
+export type PutApiPhaseTransitionsByIdResponse = PutApiPhaseTransitionsByIdResponses[keyof PutApiPhaseTransitionsByIdResponses];
 
 export type GetApiTasksData = {
     body?: never;
@@ -382,5 +388,7 @@ export type PutApiTasksByIdResponses = {
     /**
      * OK
      */
-    200: unknown;
+    200: Task;
 };
+
+export type PutApiTasksByIdResponse = PutApiTasksByIdResponses[keyof PutApiTasksByIdResponses];
