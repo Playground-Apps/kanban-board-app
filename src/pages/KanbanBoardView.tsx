@@ -1,10 +1,10 @@
-import { useKanbanBoardController } from '../controllers/KanbanBoardController.jsx';
+import { useKanbanBoardController } from '../controllers/KanbanBoardController.js';
 import '../styles/KanbanBoard.css';
 import { DragDropProvider } from '@dnd-kit/react';
-import { Phase } from '../components/PhaseSlab.jsx';
+import { PhaseSlab } from '../components/PhaseSlab.js';
 
 export default () => {
-  const { areas, tasks, setTasks } = useKanbanBoardController();
+  const { phases, tasks } = useKanbanBoardController();
   return (
     <DragDropProvider 
       onDragEnd={({operation, canceled}) => {
@@ -19,10 +19,10 @@ export default () => {
           }));
         }
       }}>
-    {areas.length > 0 &&
+    {phases.length > 0 &&
     
-    areas.map(item => (
-      <Phase key={item?.Id} item={item} tasks={tasks} />
+    phases.map(item => (
+      <PhaseSlab key={item?.id} item={item} tasks={tasks} />
     ))}
     </DragDropProvider>
   );

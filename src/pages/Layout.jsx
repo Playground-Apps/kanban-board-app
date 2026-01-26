@@ -1,9 +1,9 @@
 import '../index.css';
 import { Routes, Route,NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import KanbanBoard from './KanbanBoardView.jsx';
-import { EditTaskView } from './EditTaskView.jsx';
-import Backlog from './Backlog.jsx';
+import KanbanBoard from './KanbanBoardView.tsx/index.js';
+import { EditTaskView } from './EditTaskView.tsx/index.js';
+import Backlog from './Backlog.js';
 import { useLocation } from 'react-router-dom';
 
 export default ()=>{
