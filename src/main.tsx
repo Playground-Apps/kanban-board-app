@@ -4,6 +4,7 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom';
 import {client} from './client/client.gen.ts';
 import Layout from './pages/Layout.tsx';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root') as HTMLElement).render(
      <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Layout />
+          <ReactQueryDevtools initialIsOpen={false} />
         </BrowserRouter>
         </QueryClientProvider>
   </StrictMode>,

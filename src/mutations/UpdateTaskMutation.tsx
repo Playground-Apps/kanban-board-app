@@ -1,14 +1,15 @@
   import { useMutation,useQueryClient} from '@tanstack/react-query';
-  import {putApiTasksByIdMutation,getTaskQueryKey,getApiTasksQueryKey} from '../client/@tanstack/react-query.gen.ts';
-  import { Task } from "../client/types.gen.js";
+  import {putApiTasksByIdMutation,getTaskQueryKey, getApiTasksOptions} from '../client/@tanstack/react-query.gen.ts';
 
   export const updateTaskMutation = () => {
+    const queryClient = useQueryClient();
+    const getTaskOptions = getApiTasksOptions();
  return useMutation({
       ...putApiTasksByIdMutation(),
       onSuccess:(data)=>{
-        useQueryClient().invalidateQueries({queryKey:getApiTasksQueryKey()});
+       queryClient.invalidateQueries({queryKey:getTaskOptions.queryKey});
         if(data.id){
-          useQueryClient().invalidateQueries({queryKey:getTaskQueryKey({path:{id:data.id}})});
+          queryClient.invalidateQueries({queryKey:getTaskQueryKey({path:{id:data.id}})});
         }
       console.log("Task updated successfully:", data);
     }

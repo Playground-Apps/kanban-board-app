@@ -5,4 +5,10 @@ export default {
     // ...other plugins
     '@tanstack/react-query', 
   ],
+  generators: {
+    tanstack: {
+      enabled: true,
+      queryKey: (operation:{_id:string}) => [operation._id], // ✅ simplified key
+    },
+  },
 };
