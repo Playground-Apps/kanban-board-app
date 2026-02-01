@@ -96,6 +96,7 @@ function validateBoard(board: Board) {
 },
     data:boards,
     state:{isLoading},
+    enableTopToolbar: false, 
    createDisplayMode: 'modal', //default ('row', and 'custom' are also available)
     getRowId: (row) => String(row.id!),
     onCreatingRowCancel: () => setValidationErrors({}),
@@ -117,21 +118,7 @@ function validateBoard(board: Board) {
         </DialogActions>
       </>
     ),
-    //optionally customize modal content
-    renderEditRowDialogContent: ({ table, row, internalEditComponents }) => (
-      <>
-        <DialogTitle variant="h3">Edit User</DialogTitle>
-        <DialogContent
-          sx={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
-        >
-          {internalEditComponents} {/* or render custom edit components here */}
-        </DialogContent>
-        <DialogActions>
-          <MRT_EditActionButtons variant="text" table={table} row={row} />
-        </DialogActions>
-      </>
-    ),
-    renderRowActions: ({ row, table }) => (
+    renderRowActions: ({ row }) => (
       <Box sx={{ display: 'flex', gap: '1rem' }}>
         <Tooltip title="Edit">
           <IconButton onClick={() => navigate(`/EditBoard/${row.original.id}`)}>
@@ -145,17 +132,11 @@ function validateBoard(board: Board) {
         </Tooltip>
       </Box>
     ),
-    renderTopToolbarCustomActions: ({ table }) => (
+    renderBottomToolbarCustomActions: ({ table }) => (
       <Button
         variant="contained"
         onClick={() => {
           table.setCreatingRow(true); //simplest way to open the create row modal with no default values
-          //or you can pass in a row object to set default values with the `createRow` helper function
-          // table.setCreatingRow(
-          //   createRow(table, {
-          //     //optionally pass in default values for the new row, useful for nested data or other complex scenarios
-          //   }),
-          // );
         }}
       >
         Create New User
