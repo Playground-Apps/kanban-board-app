@@ -15,6 +15,7 @@ import {
   DialogContent,
   DialogTitle,
   IconButton,
+  Link,
   Tooltip,
 } from '@mui/material';
 import type { Board } from '../client/types.gen.js';
@@ -79,6 +80,20 @@ function validateBoard(board: Board) {
         header: 'Board Name',
         grow:1
       },
+      {
+        header: 'PhaseMovements',
+        Cell: ({ row }) => (
+                              <Link
+                                component="button"
+                                underline="hover"
+                                onClick={() =>
+                                  navigate(`/PhaseMovements/${row.original.id}`)
+                                }
+                              >
+                                Configure Relationship
+                              </Link>
+                            ),
+      }
     ],
     [],
   );
@@ -92,6 +107,14 @@ function validateBoard(board: Board) {
       width: '100%',
       border: '2px solid var(--primary-color)',
     borderRadius: '8px',  
+    },
+},
+muiTableBodyProps:{
+  sx: {
+      //stripe the rows, make odd rows a darker color
+      '& tr:nth-of-type(odd) > td': {
+        backgroundColor: '#f9f9f9',
+      },
     },
 },
     data:boards,

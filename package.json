@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "openapi-ts --file src/openapi/KanbanBoard.config.ts && vite",
     "build": "vite build",
     "openapi": "openapi-ts --file src/openapi/KanbanBoard.config.ts",
     "lint": "eslint .",

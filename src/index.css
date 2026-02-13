@@ -82,7 +82,11 @@ aside{
   flex-direction: column;
   align-items: center;
 }
-
+p{
+  color: var(--primary-color);
+  font-weight: bolder;
+  margin: 20px;
+}
 .menu-items{
 display: flex;
 flex-direction: column;

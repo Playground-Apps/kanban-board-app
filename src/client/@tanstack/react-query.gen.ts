@@ -3,8 +3,8 @@
 import { type DefaultError, queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 
 import { client } from '../client.gen';
-import { deleteApiBoardsById, deleteApiPhasesById, deleteApiPhaseTransitionsById, deleteApiTasksById, get, getApiBoards, getApiPhases, getApiPhaseTransitions, getApiTasks, getBoard, getPhase, getTask, getTransition, type Options, postApiBoards, postApiPhases, postApiPhaseTransitions, postApiTasks, putApiBoardsById, putApiPhasesById, putApiPhaseTransitionsById, putApiTasksById } from '../sdk.gen';
-import type { DeleteApiBoardsByIdData, DeleteApiPhasesByIdData, DeleteApiPhaseTransitionsByIdData, DeleteApiTasksByIdData, GetApiBoardsData, GetApiBoardsResponse, GetApiPhasesData, GetApiPhasesResponse, GetApiPhaseTransitionsData, GetApiPhaseTransitionsResponse, GetApiTasksData, GetApiTasksResponse, GetBoardData, GetBoardResponse, GetData, GetPhaseData, GetPhaseResponse, GetResponse, GetTaskData, GetTaskResponse, GetTransitionData, GetTransitionResponse, PostApiBoardsData, PostApiBoardsResponse, PostApiPhasesData, PostApiPhasesResponse, PostApiPhaseTransitionsData, PostApiPhaseTransitionsResponse, PostApiTasksData, PostApiTasksResponse, PutApiBoardsByIdData, PutApiBoardsByIdResponse, PutApiPhasesByIdData, PutApiPhasesByIdResponse, PutApiPhaseTransitionsByIdData, PutApiPhaseTransitionsByIdResponse, PutApiTasksByIdData, PutApiTasksByIdResponse } from '../types.gen';
+import { deleteApiBoardsById, deleteApiPhasesById, deleteApiPhaseTransitionsById, deleteApiTasksById, get, getApiBoards, getApiPhases, getApiPhaseTransitions, getApiTasks, getBoard, getPhase, getPhasesByBoardById, getTask, getTransition, type Options, postApiBoards, postApiPhases, postApiPhaseTransitions, postApiTasks, putApiBoardsById, putApiPhasesById, putApiPhaseTransitionsById, putApiTasksById } from '../sdk.gen';
+import type { DeleteApiBoardsByIdData, DeleteApiPhasesByIdData, DeleteApiPhaseTransitionsByIdData, DeleteApiTasksByIdData, GetApiBoardsData, GetApiBoardsResponse, GetApiPhasesData, GetApiPhasesResponse, GetApiPhaseTransitionsData, GetApiPhaseTransitionsResponse, GetApiTasksData, GetApiTasksResponse, GetBoardData, GetBoardResponse, GetData, GetPhaseData, GetPhaseResponse, GetPhasesByBoardByIdData, GetPhasesByBoardByIdResponse, GetResponse, GetTaskData, GetTaskResponse, GetTransitionData, GetTransitionResponse, PostApiBoardsData, PostApiBoardsResponse, PostApiPhasesData, PostApiPhasesResponse, PostApiPhaseTransitionsData, PostApiPhaseTransitionsResponse, PostApiTasksData, PostApiTasksResponse, PutApiBoardsByIdData, PutApiBoardsByIdResponse, PutApiPhasesByIdData, PutApiPhasesByIdResponse, PutApiPhaseTransitionsByIdData, PutApiPhaseTransitionsByIdResponse, PutApiTasksByIdData, PutApiTasksByIdResponse } from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseUrl' | 'body' | 'headers' | 'path' | 'query'> & {
@@ -197,6 +197,21 @@ export const putApiPhasesByIdMutation = (options?: Partial<Options<PutApiPhasesB
     };
     return mutationOptions;
 };
+
+export const getPhasesByBoardByIdQueryKey = (options: Options<GetPhasesByBoardByIdData>) => createQueryKey('getPhasesByBoardById', options);
+
+export const getPhasesByBoardByIdOptions = (options: Options<GetPhasesByBoardByIdData>) => queryOptions<GetPhasesByBoardByIdResponse, DefaultError, GetPhasesByBoardByIdResponse, ReturnType<typeof getPhasesByBoardByIdQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getPhasesByBoardById({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getPhasesByBoardByIdQueryKey(options)
+});
 
 export const getApiPhaseTransitionsQueryKey = (options?: Options<GetApiPhaseTransitionsData>) => createQueryKey('getApiPhaseTransitions', options);
 

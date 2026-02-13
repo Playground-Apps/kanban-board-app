@@ -14,7 +14,6 @@ export type Phase = {
     id?: number;
     name: string | null;
     boardId?: number;
-    board?: Board;
     phaseMovement?: Array<PhaseTransitions> | null;
     tasks?: Array<Task> | null;
 };
@@ -224,6 +223,26 @@ export type PutApiPhasesByIdResponses = {
 };
 
 export type PutApiPhasesByIdResponse = PutApiPhasesByIdResponses[keyof PutApiPhasesByIdResponses];
+
+export type GetPhasesByBoardByIdData = {
+    body?: never;
+    path: {
+        id: number;
+    };
+    query?: {
+        includeTask?: boolean;
+    };
+    url: '/phasesByBoard/{id}';
+};
+
+export type GetPhasesByBoardByIdResponses = {
+    /**
+     * OK
+     */
+    200: Array<Phase>;
+};
+
+export type GetPhasesByBoardByIdResponse = GetPhasesByBoardByIdResponses[keyof GetPhasesByBoardByIdResponses];
 
 export type GetApiPhaseTransitionsData = {
     body?: never;

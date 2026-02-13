@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { DeleteApiBoardsByIdData, DeleteApiBoardsByIdResponses, DeleteApiPhasesByIdData, DeleteApiPhasesByIdResponses, DeleteApiPhaseTransitionsByIdData, DeleteApiPhaseTransitionsByIdResponses, DeleteApiTasksByIdData, DeleteApiTasksByIdResponses, GetApiBoardsData, GetApiBoardsResponses, GetApiPhasesData, GetApiPhasesResponses, GetApiPhaseTransitionsData, GetApiPhaseTransitionsResponses, GetApiTasksData, GetApiTasksResponses, GetBoardData, GetBoardResponses, GetData, GetPhaseData, GetPhaseResponses, GetResponses, GetTaskData, GetTaskResponses, GetTransitionData, GetTransitionResponses, PostApiBoardsData, PostApiBoardsResponses, PostApiPhasesData, PostApiPhasesResponses, PostApiPhaseTransitionsData, PostApiPhaseTransitionsResponses, PostApiTasksData, PostApiTasksResponses, PutApiBoardsByIdData, PutApiBoardsByIdResponses, PutApiPhasesByIdData, PutApiPhasesByIdResponses, PutApiPhaseTransitionsByIdData, PutApiPhaseTransitionsByIdResponses, PutApiTasksByIdData, PutApiTasksByIdResponses } from './types.gen';
+import type { DeleteApiBoardsByIdData, DeleteApiBoardsByIdResponses, DeleteApiPhasesByIdData, DeleteApiPhasesByIdResponses, DeleteApiPhaseTransitionsByIdData, DeleteApiPhaseTransitionsByIdResponses, DeleteApiTasksByIdData, DeleteApiTasksByIdResponses, GetApiBoardsData, GetApiBoardsResponses, GetApiPhasesData, GetApiPhasesResponses, GetApiPhaseTransitionsData, GetApiPhaseTransitionsResponses, GetApiTasksData, GetApiTasksResponses, GetBoardData, GetBoardResponses, GetData, GetPhaseData, GetPhaseResponses, GetPhasesByBoardByIdData, GetPhasesByBoardByIdResponses, GetResponses, GetTaskData, GetTaskResponses, GetTransitionData, GetTransitionResponses, PostApiBoardsData, PostApiBoardsResponses, PostApiPhasesData, PostApiPhasesResponses, PostApiPhaseTransitionsData, PostApiPhaseTransitionsResponses, PostApiTasksData, PostApiTasksResponses, PutApiBoardsByIdData, PutApiBoardsByIdResponses, PutApiPhasesByIdData, PutApiPhasesByIdResponses, PutApiPhaseTransitionsByIdData, PutApiPhaseTransitionsByIdResponses, PutApiTasksByIdData, PutApiTasksByIdResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -67,6 +67,8 @@ export const putApiPhasesById = <ThrowOnError extends boolean = false>(options: 
         ...options.headers
     }
 });
+
+export const getPhasesByBoardById = <ThrowOnError extends boolean = false>(options: Options<GetPhasesByBoardByIdData, ThrowOnError>) => (options.client ?? client).get<GetPhasesByBoardByIdResponses, unknown, ThrowOnError>({ url: '/phasesByBoard/{id}', ...options });
 
 export const getApiPhaseTransitions = <ThrowOnError extends boolean = false>(options?: Options<GetApiPhaseTransitionsData, ThrowOnError>) => (options?.client ?? client).get<GetApiPhaseTransitionsResponses, unknown, ThrowOnError>({ url: '/api/PhaseTransitions', ...options });
 

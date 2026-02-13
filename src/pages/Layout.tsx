@@ -1,12 +1,7 @@
 import '../index.css';
-import { Routes, Route,NavLink } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { useState } from 'react';
-import KanbanBoard from './KanbanBoardView.tsx';
-import { EditTaskView } from './EditTaskView.tsx';
-import {BoardView} from './BoardView.tsx';
-import Backlog from './Backlog.js';
 import { useLocation } from 'react-router-dom';
-import EditBoardView from './EditBoardView.tsx';
 
 export default ()=>{
 const [layout,setLayout]= useState("main-layout-a");
@@ -49,12 +44,8 @@ const location = useLocation();
         </div>
         <div className='button-exp' onClick={toggleSidebar}>{layout=="main-layout-a" ? '<<' : '>>'}</div>
     </aside>
-    <main> <Routes>
-      <Route path="/ActiveSprint" element={<KanbanBoard />} />
-      <Route path="/EditTask/:id" element={<EditTaskView />} />
-      <Route path="/Backlog" element={<Backlog />} />
-      <Route path="/ViewBoards" element={<BoardView />} />
-       <Route path="/EditBoard/:id" element={<EditBoardView />} />
-    </Routes></main>
+    <main>
+      <Outlet />
+    </main>
     </div>);
 }
