@@ -37,7 +37,6 @@ createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="/Backlog" element={<Backlog />} />
             <Route path="/ViewBoards" element={<BoardView />} />
             <Route path="/EditBoard/:id" element={<EditBoardView />} />
-            <Route path="/PhaseMovements/:id" element={<PhaseMovements />} />
             <Route path="*" element={<PageNotFound />} />
            </Route>
          </Routes>

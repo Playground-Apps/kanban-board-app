@@ -1,19 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
 import{ getPhasesByBoardByIdOptions } from "../client/@tanstack/react-query.gen.ts";
-import { PhaseTransitions } from "src/client";
-import { useState } from "react";
+import { Phase, PhaseTransitions } from "src/client";
+import { useEffect, useState } from "react";
 import { Box, Checkbox } from "@mui/material";
 
 
-const PhaseMovements = () => {
-    const { id } = useParams();
+const PhaseMovements = ({id}: {id:number}) => {
     const { data, isLoading } = useQuery({
         ...getPhasesByBoardByIdOptions({
             path: { id: Number(id!) },
-           query: { includeTask: false}})
-    });
-    const values = data?.map(phase =>{ 
+           query: { includeTask: false}}),
+        },
+       );
+  
+    const [tableData, setTableData] = useState<Phase[]>([]);
+
+    useEffect(() => {
+        if(isLoading) return;
+     const values = Array.isArray(data) && data?.map(phase =>{ 
         if(phase.phaseMovement?.length==0){
             return {...phase,
                 phaseMovement: data.filter(x => x.id !== phase.id).reduce<PhaseTransitions[]>((acc, x) => {
@@ -24,9 +28,10 @@ const PhaseMovements = () => {
         }
         return phase
     })||[];
-    const [tableData, setTableData] = useState(values);
+        setTableData(values);
+    }, [isLoading]);
+
     const [selectedPhase, setSelectedPhase] = useState<Number | null>(null);
-    console.log("tableData:", tableData);
     const updatePhaseMovements=(phaseId:number,isChecked:boolean,movement:PhaseTransitions[]):PhaseTransitions[]=>{
        const movementIndex = movement.findIndex(x => x.toPhaseId === phaseId);
        if(movementIndex===-1)
@@ -60,8 +65,9 @@ const PhaseMovements = () => {
         }
     }
     return (
-        tableData?  (
-     <Box sx={{ mx:2, mt: 2, display: 'flex', maxWidth: '100%',minWidth:'50%',   alignSelf: 'flex-start', border: '1px solid black', borderRadius: '8px' }}>
+        isLoading ? <p>Loading...</p> :
+        tableData.length?  (
+     <Box sx={{ mx:2, mt: 2, display: 'flex', maxWidth: '100%',minWidth:'50%',  border: '1px solid black', borderRadius: '8px' }}>
         <Box sx={{display:'flex',flexDirection:'column', borderRight: '1px solid black' }}>
                 <Box sx={{height:'30px',borderBottom: '1px solid black',color:'black', textAlign:'center',fontWeight:'Bolder'}}>
                    Phases
@@ -101,7 +107,7 @@ const PhaseMovements = () => {
             })}
         </Box>
     </Box>
-        ) : (<p>No phase movements found for board</p> )
+        ) : (<p>No phases configured for board</p> )
     );
 };
 

@@ -25,16 +25,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { createBoardMutation } from '../mutations/CreateBoardMutation.tsx';
 import { deleteBoardMutation } from '../mutations/DeleteBoardMutation.tsx';
 import { useNavigate   } from 'react-router-dom';
+import { ModalDialogue } from '../components/ModalDialogue.tsx';
+import PhaseMovements from './PhaseMovements.tsx';
 
 export const BoardView = () => {
     const [validationErrors, setValidationErrors] = useState<
     Record<string, string | undefined>
   >({});
-    const navigate = useNavigate();
-   const { mutateAsync: createBoard, isPending: isCreatingBoard } =
+  const [rowId,setRowId] = useState<Number| null>(null);
+   const navigate= useNavigate();
+  const { mutateAsync: createBoard, isPending: isCreatingBoard } =
     createBoardMutation();
-
-       const { mutateAsync: deleteBoard, isPending: isDeletingBoard } =
+  const { mutateAsync: deleteBoard, isPending: isDeletingBoard } =
    deleteBoardMutation();
     
   const {boards,isLoading}= useBoardViewController();
@@ -82,20 +84,32 @@ function validateBoard(board: Board) {
       },
       {
         header: 'PhaseMovements',
-        Cell: ({ row }) => (
+        Cell: ({ row }) => 
+          {
+         const isOpen = rowId === row.original.id;
+
+            return(
+                        <>
                               <Link
                                 component="button"
                                 underline="hover"
-                                onClick={() =>
-                                  navigate(`/PhaseMovements/${row.original.id}`)
-                                }
+                                onClick={(e) =>
+                                {
+                                  e.preventDefault() ;
+                                  setRowId(row.original.id!);
+                                }}
                               >
                                 Configure Relationship
                               </Link>
-                            ),
+                                <ModalDialogue open={isOpen} modalHeading={row.original.name!} onConfirm={() => {}} onCancel={() => setRowId(null)} >
+                                  <PhaseMovements id={Number(row.original.id!)} />
+                                  </ModalDialogue>
+                                  </>
+                            );
+                          }
       }
     ],
-    [],
+    [rowId],
   );
 
  const table = useMaterialReactTable({
@@ -162,10 +176,12 @@ muiTableBodyProps:{
           table.setCreatingRow(true); //simplest way to open the create row modal with no default values
         }}
       >
-        Create New User
+        Create New Board
       </Button>
     ),
   });
 
-  return <MaterialReactTable table={table} />;
+  return <> 
+  <MaterialReactTable table={table} />
+  </>;
 }
