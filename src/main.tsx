@@ -15,8 +15,7 @@ import PageNotFound from './pages/404Page.tsx';
 import PhaseMovements from './pages/PhaseMovements.tsx';
 
 const queryClient = new QueryClient();
-const ServerBaseUrl = import.meta.env.VITE_BASE_URL;
-console.log("ServerBaseUrl:", ServerBaseUrl);
+const ServerBaseUrl = import.meta.env.VITE_BASE_URL || window.location.origin;
 // configure internal service client
 client.setConfig({
   // set default base url for requests
