@@ -1,8 +1,6 @@
 import '../index.css';
-import { Routes, Route,NavLink } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { useState } from 'react';
-import KanbanBoard from './KanbanBoardView.jsx';
-import Backlog from './Backlog.jsx';
 import { useLocation } from 'react-router-dom';
 
 export default ()=>{
@@ -16,7 +14,9 @@ const location = useLocation();
     <nav>  
     <div className='nav-left-buttons'>
     <div className='side-drawer' onClick={toggleSidebar}>{layout=="main-layout-a" ? '✖' : '≡'}</div> 
-    <div>Logo</div>
+    <div style={{
+      alignContent: "center",
+       }}>Logo</div>
     {
       location.pathname==="/ActiveSprint" &&
     <button style={{
@@ -40,12 +40,12 @@ const location = useLocation();
         <div className='menu-items'>
         <NavLink to="/ActiveSprint">Active Sprint</NavLink>
         <NavLink to="/Backlog">Backlog</NavLink>
+        <NavLink to="/ViewBoards">View Boards</NavLink>
         </div>
         <div className='button-exp' onClick={toggleSidebar}>{layout=="main-layout-a" ? '<<' : '>>'}</div>
     </aside>
-    <main> <Routes>
-      <Route path="/ActiveSprint" element={<KanbanBoard />} />
-      <Route path="/Backlog" element={<Backlog />} />
-    </Routes></main>
+    <main>
+      <Outlet />
+    </main>
     </div>);
 }
