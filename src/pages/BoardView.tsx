@@ -34,6 +34,7 @@ export const BoardView = () => {
   >({});
   const [rowId,setRowId] = useState<Number| null>(null);
    const navigate= useNavigate();
+   
   const { mutateAsync: createBoard, isPending: isCreatingBoard } =
     createBoardMutation();
   const { mutateAsync: deleteBoard, isPending: isDeletingBoard } =
