@@ -16,5 +16,6 @@ LABEL traefik.enable=true \
       traefik.http.routers.frontend.rule="Host(`kanban-board.com`) && PathPrefix(\`${BASE_PATH}\`) && !PathPrefix(\`/api\`)" \
       traefik.http.routers.frontend.entrypoints="websecure" \
       traefik.http.routers.frontend.priority="500" \
-      traefik.http.services.frontend.loadbalancer.server.port="80" \
+      traefik.http.services.frontend.loadbalancer.server.port="80"
+
 CMD ["nginx", "-g", "daemon off;"]
