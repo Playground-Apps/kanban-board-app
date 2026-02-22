@@ -19,7 +19,7 @@ const ServerBaseUrl = import.meta.env.VITE_BASE_URL || window.location.origin;
 // configure internal service client
 client.setConfig({
   // set default base url for requests
-  baseUrl: ServerBaseUrl,
+  baseUrl: ServerBaseUrl+"/api/kanban_board/v1",
   // set default headers for requests
   headers: {
     Authorization: 'Bearer <token_from_service_client>',
