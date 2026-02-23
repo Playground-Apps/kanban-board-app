@@ -110,7 +110,7 @@ function validateBoard(board: Board) {
                                   </ModalDialogue>
               ):(
                  <>
-                      <Dialog fullWidth open={false}>
+                      <Dialog fullWidth open={isOpen}>
                 
                       <DialogContent>
                         No phases found for this board. Please add phases to the board to configure movements.
