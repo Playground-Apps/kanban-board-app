@@ -93,8 +93,6 @@ function validateBoard(board: Board) {
 
             return(
               <>
-              {row.original.phases && row.original.phases.length > 0 ? (
-                <>
                               <Link
                                 component="button"
                                 underline="hover"
@@ -106,10 +104,10 @@ function validateBoard(board: Board) {
                               >
                                 Configure Relationship
                               </Link>
+              {row.original.phases && row.original.phases.length > 0 ? (
                                 <ModalDialogue open={isOpen} modalHeading={row.original.name!} onConfirm={() => {}} onCancel={() => setRowId(null)} >
                                   <PhaseMovements id={Number(row.original.id!)} />
                                   </ModalDialogue>
-                                  </>
               ):(
                  <>
                       <Dialog fullWidth open={false}>
