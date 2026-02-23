@@ -6,6 +6,7 @@ import { Box, Checkbox } from "@mui/material";
 
 
 const PhaseMovements = ({id}: {id:number}) => {
+    // To ensure always configuring on latest data, we can fetch the data here instead of passing as props from board view.
     const { data, isLoading } = useQuery({
         ...getPhasesByBoardByIdOptions({
             path: { id: Number(id!) },

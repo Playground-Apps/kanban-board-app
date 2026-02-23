@@ -11,6 +11,7 @@ import {
 import {
   Box,
   Button,
+  Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
@@ -76,7 +77,8 @@ function validateBoard(board: Board) {
           {
         accessorKey: 'id',
         header: 'Id',
-        grow:1
+        grow:1,
+        enableCreating:false,
       },
       {
         accessorKey: 'name', //access nested data with dot notation
@@ -90,7 +92,9 @@ function validateBoard(board: Board) {
          const isOpen = rowId === row.original.id;
 
             return(
-                        <>
+              <>
+              {row.original.phases && row.original.phases.length > 0 ? (
+                <>
                               <Link
                                 component="button"
                                 underline="hover"
@@ -106,8 +110,25 @@ function validateBoard(board: Board) {
                                   <PhaseMovements id={Number(row.original.id!)} />
                                   </ModalDialogue>
                                   </>
+              ):(
+                 <>
+                      <Dialog fullWidth open={false}>
+                
+                      <DialogContent>
+                        No phases found for this board. Please add phases to the board to configure movements.
+                      </DialogContent>
+                
+                      <DialogActions>
+                        <Button  onClick={() => setRowId(null)}>Cancel</Button>
+                        <Button variant="contained" onClick={() => navigate(`/EditBoard/${row.original.id}`)}>Create Phases</Button>
+                      </DialogActions>
+                    </Dialog>
+                  </>
+              )}
+                                  </>
                             );
-                          }
+                          },
+          enableCreating:false,
       }
     ],
     [rowId],
