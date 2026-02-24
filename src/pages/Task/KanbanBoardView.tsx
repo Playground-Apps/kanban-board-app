@@ -1,10 +1,10 @@
-import { useKanbanBoardController } from '../controllers/KanbanBoardController.js';
-import '../styles/KanbanBoard.css';
+import { useKanbanBoardController } from './controllers/KanbanBoardController.js';
+import '../../styles/KanbanBoard.css';
 import { DndContext } from '@dnd-kit/core';
 import type { DragEndEvent } from '@dnd-kit/core';
-import { PhaseSlab } from '../components/PhaseSlab.js';
-import {updateTaskMutation} from '../mutations/UpdateTaskMutation.js';
-import { Task } from '../client/types.gen.js';
+import { PhaseSlab } from './PhaseSlab.js';
+import {updateTaskMutation} from './controllers/UpdateTaskMutation.js';
+import { Task } from '../../client/types.gen.js';
 
 export default () => {
   const { phases, tasks } = useKanbanBoardController();

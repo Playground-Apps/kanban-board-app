@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import{ getPhasesByBoardByIdOptions } from "../client/@tanstack/react-query.gen.ts";
+import{ getPhasesByBoardByIdOptions } from "../../client/@tanstack/react-query.gen.ts";
 import { Phase, PhaseTransitions } from "src/client";
 import { useEffect, useState } from "react";
 import { Box, Checkbox } from "@mui/material";

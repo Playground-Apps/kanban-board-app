@@ -1,5 +1,5 @@
   import { useMutation, useQueryClient} from '@tanstack/react-query';
-  import {deleteApiBoardsByIdMutation, getApiBoardsOptions, getBoardQueryKey} from '../client/@tanstack/react-query.gen.ts';
+  import {deleteApiBoardsByIdMutation, getApiBoardsOptions, getBoardQueryKey} from '../../../client/@tanstack/react-query.gen.ts';
 
   export const deleteBoardMutation = () => {
       const queryClient = useQueryClient();

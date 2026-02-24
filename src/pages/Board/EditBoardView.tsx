@@ -1,11 +1,11 @@
 import { TextField, Button, Stack, Paper, Typography, Box } from '@mui/material';
-import { useFieldArray, UseFieldArrayUpdate, useForm } from 'react-hook-form';
+import { useFieldArray, useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getBoardOptions, getBoardQueryKey, putApiBoardsByIdMutation } from '../client/@tanstack/react-query.gen';
+import { getBoardOptions, getBoardQueryKey, putApiBoardsByIdMutation } from '../../client/@tanstack/react-query.gen';
 import { Board } from 'src/client';
-import { PhaseForm } from '../components/PhaseForm';
+import { PhaseForm } from './PhaseForm';
 
 const EditBoardView = () => {
   const { id } = useParams();
@@ -88,7 +88,6 @@ const EditBoardView = () => {
             key={field.id}
             index={index}
             remove={remove}
-            value={field}
             register ={register}
           />
           

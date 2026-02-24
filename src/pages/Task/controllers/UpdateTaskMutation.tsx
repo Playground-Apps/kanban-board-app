@@ -1,5 +1,5 @@
   import { useMutation,useQueryClient} from '@tanstack/react-query';
-  import {putApiTasksByIdMutation,getTaskQueryKey, getApiTasksOptions} from '../client/@tanstack/react-query.gen.ts';
+  import {putApiTasksByIdMutation,getTaskQueryKey, getApiTasksOptions} from '../../../client/@tanstack/react-query.gen.ts';
 
   export const updateTaskMutation = () => {
     const queryClient = useQueryClient();

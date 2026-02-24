@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import {getApiBoardsOptions} from '../client/@tanstack/react-query.gen.ts';
+import {getApiBoardsOptions} from '../../../client/@tanstack/react-query.gen.ts';
 import { useMemo } from 'react';
 
 export const useBoardViewController = ()=>

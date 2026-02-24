@@ -2,7 +2,7 @@ import { UseFieldArrayRemove, UseFieldArrayUpdate, UseFormRegister } from "react
 import { Board, Phase } from "src/client";
 import { Button } from "@mui/material";
 
-export const PhaseForm = ({remove,index,value,register}:{remove:UseFieldArrayRemove,index:number,value:Phase,register:UseFormRegister<Board>}) => {
+export const PhaseForm = ({remove,index,register}:{remove:UseFieldArrayRemove,index:number,register:UseFormRegister<Board>}) => {
   return (
     <div>
       <input

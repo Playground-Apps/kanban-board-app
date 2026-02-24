@@ -1,5 +1,5 @@
 import { useDraggable } from '@dnd-kit/core';
-import { Task } from '../client/types.gen';
+import { Task } from '../../client/types.gen';
 
 export const TaskCard = ({ task }: { task: Task }) => {
        const { setNodeRef } = useDraggable({

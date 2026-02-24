@@ -19,14 +19,14 @@ import {
   Link,
   Tooltip,
 } from '@mui/material';
-import type { Board } from '../client/types.gen.js';
-import { useBoardViewController } from '../controllers/BoardsViewController.tsx';
+import type { Board } from '../../client/types.gen.js';
+import { useBoardViewController } from './controllers/BoardsViewController.tsx';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { createBoardMutation } from '../mutations/CreateBoardMutation.tsx';
-import { deleteBoardMutation } from '../mutations/DeleteBoardMutation.tsx';
+import { createBoardMutation } from './controllers/CreateBoardMutation.tsx';
+import { deleteBoardMutation } from './controllers/DeleteBoardMutation.tsx';
 import { useNavigate   } from 'react-router-dom';
-import { ModalDialogue } from '../components/ModalDialogue.tsx';
+import { ModalDialogue } from '../../components/ModalDialogue.tsx';
 import PhaseMovements from './PhaseMovements.tsx';
 
 export const BoardView = () => {

@@ -1,11 +1,11 @@
 import {  useMemo } from "react";
-import {InlineEdit} from "../components/InLineEdit.js";
+import {InlineEdit} from "../../components/InLineEdit.js";
 import TurndownService from "turndown";
 import { useParams } from "react-router-dom";
-import { Task } from "../client/types.gen.js";
-import { updateTaskMutation } from "../mutations/UpdateTaskMutation.js";
+import { Task } from "../../client/types.gen.js";
+import { updateTaskMutation } from "./controllers/UpdateTaskMutation.js";
 import { useQuery } from '@tanstack/react-query';
-import { getTaskOptions } from "../client/@tanstack/react-query.gen.js";
+import { getTaskOptions } from "../../client/@tanstack/react-query.gen.js";
 
 
 export const EditTaskView = () => {

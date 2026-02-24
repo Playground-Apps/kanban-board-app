@@ -1,6 +1,6 @@
 import { useDroppable } from '@dnd-kit/core';
 import { TaskCard  } from './TaskCard';
-import { Task,Phase } from '../client/types.gen';
+import { Task,Phase } from '../../client/types.gen';
 
 export const PhaseSlab = ({item,tasks}:{item: Phase; tasks: Task[]})=>{
    const { setNodeRef } = useDroppable({

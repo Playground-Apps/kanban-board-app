@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import {getApiPhasesOptions,getApiTasksOptions} from '../client/@tanstack/react-query.gen.ts';
+import {getApiPhasesOptions,getApiTasksOptions} from '../../../client/@tanstack/react-query.gen.ts';
 
 export const useKanbanBoardController = ()=>
 {
